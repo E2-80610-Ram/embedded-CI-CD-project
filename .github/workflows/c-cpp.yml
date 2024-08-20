@@ -17,10 +17,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up ARM GCC Toolchain
-      uses: ARMmbed/mbed-tools-setup@v1
-      with:
-        version: '10.3-2021.10'  # Specify the ARM GCC toolchain version
+    - name: Install ARM GCC Toolchain
+      run: |
+        # Install dependencies
+        sudo apt-get update
+        sudo apt-get install -y wget unzip
+        
+        # Download ARM GCC toolchain
+        wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-linux-x86_64.tar.gz
+        
+        # Extract and install
+        tar -xzf gcc-arm-none-eabi-10.3-2021.10-linux-x86_64.tar.gz
+        sudo mv gcc-arm-none-eabi-10.3-2021.10 /usr/local/gcc-arm
+        sudo ln -s /usr/local/gcc-arm/bin/arm-none-eabi-* /usr/local/bin/
 
     - name: Build the project
       run: |
