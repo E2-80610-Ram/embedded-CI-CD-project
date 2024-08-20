@@ -33,7 +33,7 @@ jobs:
 
     - name: Build the project
       run: |
-        cd ${{ github.workspace }}/project_desd
+        cd ${{ github.workspace }}/project_desd/Debug/
         make clean all  # Adjust if needed based on your Makefile or build system
 
     - name: Generate binary file
