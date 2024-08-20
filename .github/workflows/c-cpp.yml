@@ -21,13 +21,13 @@ jobs:
       run: |
         # Install dependencies
         sudo apt-get update
-        sudo apt-get install -y wget unzip
+        sudo apt-get install -y wget bzip2
         
         # Download ARM GCC toolchain
-        wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-linux-x86_64.tar.gz
+        wget "https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2?rev=78196d3461ba4c9089a67b5f33edf82a&hash=5631ACEF1F8F237389F14B41566964EC" -O gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2
         
         # Extract and install
-        tar -xzf gcc-arm-none-eabi-10.3-2021.10-linux-x86_64.tar.gz
+        tar -xjf gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2
         sudo mv gcc-arm-none-eabi-10.3-2021.10 /usr/local/gcc-arm
         sudo ln -s /usr/local/gcc-arm/bin/arm-none-eabi-* /usr/local/bin/
 
